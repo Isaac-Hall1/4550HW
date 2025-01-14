@@ -27,8 +27,11 @@ def getBooks():
 @app.get("/books/{book_id}")
 def getBookById(book_id:int):
     data = getData()
-    book = data['books'][book_id]
-    return book
+    books = data['books']
+    for book in books:
+        if book['id'] == book_id:
+            return book
+    return {"message": "Book not found"}
 @app.get("/authors")
 def getAuthors():
     data = getData()
@@ -38,8 +41,11 @@ def getAuthors():
 @app.get("/authors/{author_id}")
 def getAuthorById(author_id:int):
     data = getData()
-    author = data['authors'][author_id]
-    return author
+    authors = data['authors']
+    for auth in authors:
+        if auth['id'] == author_id:
+            return auth
+    return {"message": "author not found"}
 @app.get("/authors/{author_id}/books")
 def getAuthorsBooks(author_id:int):
     data = getData()
