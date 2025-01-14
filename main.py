@@ -23,23 +23,23 @@ def getBooks():
     data = getData()
     books = data['books'] 
     books.sort(key=lambda x:x['id'])
-    return {"Books": books}
+    return books
 @app.get("/books/{book_id}")
 def getBookById(book_id:int):
     data = getData()
     book = data['books'][book_id]
-    return {'Book': book}
+    return book
 @app.get("/authors")
 def getAuthors():
     data = getData()
     authors = data['authors']
     authors.sort(key=lambda x:x['id'])
-    return {'Authors': authors}
+    return authors
 @app.get("/authors/{author_id}")
 def getAuthorById(author_id:int):
     data = getData()
     author = data['authors'][author_id]
-    return {'Author': author}
+    return author
 @app.get("/authors/{author_id}/books")
 def getAuthorsBooks(author_id:int):
     data = getData()
@@ -49,4 +49,4 @@ def getAuthorsBooks(author_id:int):
         if book['author_id'] == author_id:
             retBooks.append(book)
     retBooks.sort(key=lambda x:x['id'])
-    return {'AuthorBooks': retBooks}
+    return retBooks
